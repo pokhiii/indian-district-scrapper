@@ -1,0 +1,18 @@
+version: "3.8"  # Specify Docker Compose version
+
+services:
+  python-app:
+    build: .  # Build the image from the current directory (context)
+    command: ["python3", "main.py"]  # Command to run within the container
+    volumes:
+      - ./main.py:/app/main.py:ro  # Mount your script as read-only
+    environment:
+      - PYTHONUNBUFFERED=1  # Optional: improve output buffering
+
+# Optional: Define a service for a database if your script requires it
+# services:
+#   database:
+#     image: postgres  # Replace with the appropriate database image
+#     environment:
+#       - POSTGRES_PASSWORD=your_password  # Set database credentials
+#       # ... other database environment variables
